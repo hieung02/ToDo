@@ -1,0 +1,31 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="carHealth.css">
+	<title>Health Constructor</title>
+</head>
+<body>
+	<form class="container" id="healthForm">
+		<h3>Please enter patient health information.</h3>
+		<div class="healthInfo">
+			<div class="dataBox">	
+				<label for="patientName">Patient's Name:</label>
+				<input type="text" id="patientName" placeholder="John Smith" required>
+			</div>
+			<div class="dataBox">
+				<label for="date">Date:</label>
+				<input type="date" id="date" required>
+				<!--Note to self...type="number" is HTML5 feature -->
+			</div>
+			<div class="dataBox">
+				<label for="visit">Reason for visit:</label>
+				<input type="text" id="visit" placeholder="eg. broken left-arm" required>	
+			</div>
+		</div>
+		<input type="submit">
+		<a href="carHealth.html"><div>Wrong Record? Click to return to homepage.</div></a>
+	</form>	
+
+	<script type="text/javascript" src="carHealth.js" ></script>
+
+</body>
+</html>
