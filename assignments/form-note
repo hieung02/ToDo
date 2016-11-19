@@ -1,0 +1,91 @@
+HTML Forms - Objective: Getting User Input
+
+<form></form>
+<input>
+<lable></lable>
+Simple Validation
+
+<form></form> => shell/container for all this inputs
+	action => the URL to send form data to (where to send the data) 
+	method => the type of HTTP request
+						"GET" => searching/retrieving/requesting info	
+						"POST"=> posting/updating/editing info onto the server database
+
+<input> => creates interactive controls
+ type="below"
+	"text" => empty box for text
+	"date" => data box
+	"color" => color options
+	"file" => choose file box
+	"checkbox" => check box
+	"password" => *****
+	plus more+
+
+
+
+<label></label> => makes it more accessible for the blind
+
+Simple Validations =>
+	'required' attribute validates that an input is not empty
+	 type from "text" to "email"
+
+
+Example1: 
+<form> 
+	<label>
+		Username:
+		<input name="username" type ="text" placeholder="username">
+	</label>
+	<label>
+		Password:
+		<input type ="password" placeholder="password">
+	</label>
+
+	<input type ="submit">
+</form>
+
+form: to submit all data together
+			block element
+			method default: get (http)
+			action default: same page 
+
+
+Example2: 
+<form> 
+	<label for="username">Username:</label>
+	<input id="username" name="username" type ="text" placeholder="username" required (boolean attribute)>
+	<label for="password">Password:</label>
+	<input id="password" type ="password" placeholder="password">
+	<input type ="submit">
+</form>
+
+Example1 and Example2 are the same.
+
+
+
+radio button
+select tag
+textarea tag
+
+Example:
+<form>
+<label for="dogs">Dogs:</label>
+<input name="petChoice" id="dogs" type="radio" value="dogs">
+
+<label for="cats">Cats:</label>
+<input name="petChoice" id="cats" type="radio" value="cats">
+//by giving them the same name, user can only select one!!
+
+<p>Favorite Color</p>
+<select name="mood">  //create dropdown menu w/ option tags
+										  //name is necessary for browser
+	<option value="happy">:)</option> to control what name presents in browser
+	<option>Orange</option>
+	<option>Yellow</option>
+</select>
+
+<textarea name="paragraph" rows="10" cols="10"></textarea>
+
+
+<button>Go!</button> button inside form submit data/ outside form submit whole form data.
+</form>
