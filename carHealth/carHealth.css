@@ -1,0 +1,72 @@
+body{
+	background: rgba(35,31,32,1);
+	text-align: center;
+}
+.container{
+	width: 70%;
+	margin: 15% 15%;
+	border: rgba(72,184,231,1);
+	background: rgba(72,184,231,.90);
+	display: inline-block;
+	font-size: 16px;
+	padding: 1%;
+	text-decoration: none;
+}
+
+h1{
+	font-size: 2em;
+	margin-bottom: 0;
+}
+
+h3{
+	font-size: 1.5em;
+	margin-top: 1px;
+}
+
+a{
+	text-decoration: none;
+	margin: 0 6px;
+	font-size: .9em;
+}
+
+button{
+	border-radius: 2%;
+	color: rgba(35,31,32,.85);
+	font-weight: bold;
+	font-size: 1.1em;
+}
+
+a[href="car.html"] button:hover{
+	color: rgba(72,70,231,.85);
+	font-size: 1.3em;
+}
+
+a[href="health.html"] button:hover{
+	color: rgba(229,98,132,1);
+	font-size: 1.3em;
+}
+
+div{
+	margin-top: 15px;
+}
+
+
+.carInfo div, .healthInfo div{
+	margin: 0 10px 8px;
+	text-align: left;
+	font-weight: bold;
+}
+
+div.carInfo{
+	padding-left: 30%;
+	padding-bottom: 7px;
+	
+}
+
+.dataBox input{
+	margin-left: 5px;
+}
+
+#visit{
+	width: 100%;
+}

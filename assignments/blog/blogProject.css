@@ -1,0 +1,53 @@
+/*color pick
+	border color: #bdc3c7;
+	date color: #3498db;
+	h2 color: 203es0;
+	font: source sans pro;
+*/
+
+
+body{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	color: rgba(0,0,0,.75);
+/*	font-weight: normal;*/
+}
+
+#blogContent{
+	font-weight: 700;
+	width: 70%;
+	margin: 0 15%;
+	border: 19px solid rgba(102,125,127,1);
+	padding: 20px;
+}
+
+.date{
+	color: rgba(103,193,204,1);
+	font-size: 1.1em;
+	font-weight: normal;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+div:first-child .date{
+	margin-top: 0;
+
+}
+
+.blogTitle{
+	font-weight: 700px;
+	font-size: 2em;
+}
+
+div p:nth-child(3){
+	border-left: 5px solid rgba(102,125,127,1);
+	padding-left: 5px;
+}
+
+div {
+	border-bottom: 2px solid rgba(102,125,127,.3);
+}
+
+div:last-child{
+	border-bottom: none;
+};
