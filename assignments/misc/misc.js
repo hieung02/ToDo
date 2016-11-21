@@ -29,3 +29,59 @@
 // (function singSong(){
 // 	console.log("Twinkle, twinkle, little stars. \nHow I wonder what you are! \nUp above the world so high, \nLike a diamond in the sky.");	
 // })();
+
+
+//console.log("printReverse() - takes array arg and print out element in reverse order.");
+function printReverse(arr){
+	// arr.forEach(function(ele, i){
+	// 	console.log(arr[(arr.length-1)-i]);
+	// });
+//for loop is better than forEach in this case.
+	for (var i = arr.length -1; i >= 0; i--){
+		console.log(arr[i]);
+	}
+}
+
+
+//console.log("isUniform() - takes array arg return true if all elements are identical.");
+function isUniform(arr){
+		//ele = next ele?
+		//if ele !== next ele => false
+  var first = arr[0];
+  for(var i = 1; i < arr.length; i++){
+  	if(arr[i] !== first){
+  		return false;
+  	}
+  }
+  return true;
+}
+
+
+
+
+function sumArray(arr){
+	var sum = 0;
+	arr.forEach(function(ele){
+		sum += ele;
+	});
+	return sum;
+}
+
+
+function max(arr){
+	var maxNum = 0;
+	arr.forEach(function(ele, i){
+		ele >= maxNum ? maxNum = ele : maxNum;
+	});
+	return maxNum;
+}
+
+
+
+
+
+
+
+
+
+
