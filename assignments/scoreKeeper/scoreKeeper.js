@@ -9,9 +9,9 @@ var p2Score = 0;
 
 
 //count nth game
-setGame.addEventListener("click",()=>{
+setGame.addEventListener("change",()=>{
 	
-	if(Number(setGame.value) > 0){
+	if(Number(setGame.value) >= 0){
 		gameCount.textContent = "Playing To: " + Number(setGame.value);
 	}
 
