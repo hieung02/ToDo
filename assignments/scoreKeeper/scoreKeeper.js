@@ -1,6 +1,4 @@
-var player1 = document.getElementById("p1");
-var player2 = document.getElementById("p2");
-var reset = document.getElementById("reset");
+var buttons = document.querySelectorAll("button");
 var scoreBoard = document.getElementById("scoreBoard");
 var gameCount = document.getElementById("gameCount");
 var setGame = document.getElementById("setGame");
@@ -9,59 +7,47 @@ var p2Score = 0;
 
 
 //count nth game
-setGame.addEventListener("change",()=>{
-	
-	if(Number(setGame.value) >= 0){
-		gameCount.textContent = "Playing To: " + Number(setGame.value);
-	}
-
+setGame.addEventListener("change",function() {
+	gameCount.textContent = "Playing To: " + Number(setGame.value);
 });
 
-//add point to player1 and player2
-player1.addEventListener("click", ()=>{
-	if( p1Score < Number(setGame.value) && p2Score < Number(setGame.value)){	
-		p1Score += 1;
-		//update score board
-		scoreBoard.textContent = p1Score + " To " + p2Score;
-	}
-  player1.classList.add("clickBlue");
-  
-  setInterval(()=>{
-  	player1.classList.remove("clickBlue");
-  }, 200);
+for (var i = 0; i < buttons.length; i++){
 
-});
+	buttons[i].addEventListener("click", function() {
 
-player2.addEventListener("click", ()=>{
-	if(p1Score < Number(setGame.value) && p2Score < Number(setGame.value)){	
-		p2Score += 1;
-		scoreBoard.textContent = p1Score + " To " + p2Score;
-	}
-	
-	player2.classList.add("clickBlue");
+	var clickedButton = this;
+	var player1 = document.getElementById("p1");
+	var player2 = document.getElementById("p2");
+	var reset = document.getElementById("reset");
+	var game = Number(setGame.value);
+	var score = p1Score + " To " + p2Score;
 
-	setInterval(()=>{
-  	player2.classList.remove("clickBlue");
-  }, 200);
+		if( p1Score < game && p2Score < game){
+		 if (player1 === clickedButton){	
+				p1Score += 1;	
+			}else if (player2 === clickedButton){	
+				p2Score += 1;	
+			}else{
+				p1Score = 0;
+				p2Score = 0;
+			}
 
-});
+			clickedButton.classList.add("clickBlue");
+		  
+		  setInterval(function() {
+		  	clickedButton.classList.remove("clickBlue");
+		  	}, 200);
 
-//reset game
-reset.addEventListener("click", ()=>{
-	p1Score = 0;
-	p2Score = 0;
-	scoreBoard.textContent = p1Score + " To " + p2Score;
+		  //update score board
+		  score = p1Score + " To " + p2Score;
+		  scoreBoard.textContent = score;
+		}
 
-	reset.classList.add("clickBlue");
+		if(p1Score === game && p1Score > p2Score){
+			scoreBoard.textContent = score + ": Player One won.";
+		}else if(p2Score === game && p2Score > p1Score){
+			scoreBoard.textContent = score + ": Player Two won.";
+		}
 
-	setInterval(()=>{
-  	reset.classList.remove("clickBlue");
-  }, 200);
-});
-
-
-
-
-
-
-
+	});		  
+}
