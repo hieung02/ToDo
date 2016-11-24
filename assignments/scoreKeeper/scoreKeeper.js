@@ -43,10 +43,8 @@ for (var i = 0; i < buttons.length; i++){
 		  scoreBoard.textContent = score;
 		}
 
-		if(p1Score === game && p1Score > p2Score){
-			scoreBoard.textContent = score + ": Player One won.";
-		}else if(p2Score === game && p2Score > p1Score){
-			scoreBoard.textContent = score + ": Player Two won.";
+		if(p1Score === game || p2Score === game){
+			p2Score > p1Score ? scoreBoard.textContent = score + ": Player Two won." : scoreBoard.textContent = score + ": Player One won.";
 		}
 
 	});		  
