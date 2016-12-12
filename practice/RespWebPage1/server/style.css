@@ -1,0 +1,31 @@
+html, body{
+	margin: 0;
+	padding: 0;
+}
+#header, section{
+	height: 100px;
+}
+#logo, #c1, #c2, #c3, #footer{
+	width: 100%;
+}
+#banner{
+	background: "pink";
+}
+#banner{
+	display: none;
+}
+#logo{
+	background: "red";
+}
+#c1{
+	background: "purple";
+}
+#c2{
+	background: "brown";
+}
+#c3{
+	background: "gray";
+}
+#footer{
+	background: "orange";
+}
