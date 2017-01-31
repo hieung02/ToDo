@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import sha1 from 'sha1';
 import superagent from 'superagent';
+import Image from './Image';
 
 class Images extends Component{
 
@@ -40,7 +41,9 @@ class Images extends Component{
 		});
 
 		uploadRequest.end((err, resp) => {
-			if(err){
+			if(err){{
+
+			}
 				alert(err);
 				return;
 			}
@@ -86,6 +89,7 @@ class Images extends Component{
 				<ol>
 					{ list }
 				</ol>
+				<Image images={this.state.images} />
 			</div>
 		)
 	}
