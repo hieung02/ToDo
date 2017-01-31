@@ -9495,161 +9495,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 82 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(31);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDropzone = __webpack_require__(176);
-
-var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
-
-var _sha = __webpack_require__(188);
-
-var _sha2 = _interopRequireDefault(_sha);
-
-var _superagent = __webpack_require__(189);
-
-var _superagent2 = _interopRequireDefault(_superagent);
-
-var _Image = __webpack_require__(84);
-
-var _Image2 = _interopRequireDefault(_Image);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Images = function (_Component) {
-	_inherits(Images, _Component);
-
-	function Images() {
-		_classCallCheck(this, Images);
-
-		var _this = _possibleConstructorReturn(this, (Images.__proto__ || Object.getPrototypeOf(Images)).call(this));
-
-		_this.state = {
-			images: []
-		};
-		return _this;
-	}
-
-	_createClass(Images, [{
-		key: 'uploadFile',
-		value: function uploadFile(files) {
-			var _this2 = this;
-
-			console.log('uploadFile: ');
-			var image = files[0];
-
-			var cloudName = 'dlqm0js0m';
-			var url = 'https://api.cloudinary.com/v1_1/' + cloudName + '/image/upload';
-
-			var timestamp = Date.now() / 1000; // Cloudninary must be in second
-			var uploadPreset = 'ldwlc3ge';
-
-			var paramsStr = 'timestamp=' + timestamp + '&upload_preset=' + uploadPreset + 'HUkbW75mY5iShSYabDUemzNb-_Y';
-
-			var signature = (0, _sha2.default)(paramsStr);
-			var params = {
-				'api_key': '936231253683263',
-				'timestamp': timestamp,
-				'upload_preset': uploadPreset,
-				'signature': signature
-			};
-
-			var uploadRequest = _superagent2.default.post(url);
-			uploadRequest.attach('file', image);
-
-			Object.keys(params).forEach(function (key) {
-				uploadRequest.field(key, params[key]);
-			});
-
-			uploadRequest.end(function (err, resp) {
-				if (err) {
-					{}
-					alert(err);
-					return;
-				}
-				console.log('UPLOAD COMPLETE: ' + JSON.stringify(resp.body));
-				var uploaded = resp.body;
-
-				var updatedImages = Object.assign([], _this2.state.images); //copy the array object
-
-				updatedImages.push(uploaded); //pushes the uploaded image to updatedImages
-
-				_this2.setState({
-					images: updatedImages //refreshes the state.images
-				});
-			});
-		}
-	}, {
-		key: 'removeImage',
-		value: function removeImage(e) {
-			e.preventDefault();
-			// console.log(e.target.id) //reference the index
-			var updatedImages = Object.assign([], this.state.images); //copy the array object
-
-			updatedImages.splice(e.target.id, 1); //pushes the uploaded image to updatedImages
-
-			this.setState({
-				images: updatedImages //refreshes the state.images
-			});
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			var _this3 = this;
-
-			var list = this.state.images.map(function (image, i) {
-				return _react2.default.createElement(
-					'li',
-					{ key: i },
-					_react2.default.createElement('img', { src: image.secure_url, style: { width: 72 } }),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement(
-						'a',
-						{ href: '#', id: i, onClick: _this3.removeImage.bind(_this3), alt: 'remove image' },
-						'remove'
-					)
-				);
-			});
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement('br', null),
-				_react2.default.createElement(_reactDropzone2.default, { onDrop: this.uploadFile.bind(this) }),
-				_react2.default.createElement(
-					'ol',
-					null,
-					list
-				),
-				_react2.default.createElement(_Image2.default, { images: this.state.images })
-			);
-		}
-	}]);
-
-	return Images;
-}(_react.Component);
-
-exports.default = Images;
-
-/***/ }),
+/* 82 */,
 /* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9696,10 +9542,30 @@ var Image = function (_Component) {
 	_createClass(Image, [{
 		key: 'render',
 		value: function render() {
+			var _this2 = this;
+
+			var list = this.props.images.map(function (image, i) {
+				return _react2.default.createElement(
+					'li',
+					{ className: 'imageBox', key: i },
+					_react2.default.createElement(
+						'a',
+						{ href: image.secure_url },
+						_react2.default.createElement('img', { src: image.secure_url })
+					),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement(
+						'a',
+						{ href: '#', id: i, onClick: _this2.props.removeImage, alt: 'remove image' },
+						' remove'
+					)
+				);
+			});
+
 			return _react2.default.createElement(
-				'div',
+				'ul',
 				null,
-				'Hello! This is Image Component.'
+				list
 			);
 		}
 	}]);
@@ -26644,9 +26510,9 @@ var _reactDom = __webpack_require__(83);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Images = __webpack_require__(82);
+var _ImageGallery = __webpack_require__(197);
 
-var _Images2 = _interopRequireDefault(_Images);
+var _ImageGallery2 = _interopRequireDefault(_ImageGallery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26672,7 +26538,7 @@ var App = function (_Component) {
 				'div',
 				null,
 				'This is the React App',
-				_react2.default.createElement(_Images2.default, null)
+				_react2.default.createElement(_ImageGallery2.default, null)
 			);
 		}
 	}]);
@@ -26681,6 +26547,141 @@ var App = function (_Component) {
 }(_react.Component);
 
 _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('root'));
+
+/***/ }),
+/* 197 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(31);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDropzone = __webpack_require__(176);
+
+var _reactDropzone2 = _interopRequireDefault(_reactDropzone);
+
+var _sha = __webpack_require__(188);
+
+var _sha2 = _interopRequireDefault(_sha);
+
+var _superagent = __webpack_require__(189);
+
+var _superagent2 = _interopRequireDefault(_superagent);
+
+var _Image = __webpack_require__(84);
+
+var _Image2 = _interopRequireDefault(_Image);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ImageGallery = function (_Component) {
+	_inherits(ImageGallery, _Component);
+
+	function ImageGallery() {
+		_classCallCheck(this, ImageGallery);
+
+		var _this = _possibleConstructorReturn(this, (ImageGallery.__proto__ || Object.getPrototypeOf(ImageGallery)).call(this));
+
+		_this.state = {
+			images: []
+		};
+		return _this;
+	}
+
+	_createClass(ImageGallery, [{
+		key: 'uploadFile',
+		value: function uploadFile(files) {
+			var _this2 = this;
+
+			// console.log('uploadFile: ');
+			var image = files[0];
+
+			var cloudName = 'dlqm0js0m';
+			var url = 'https://api.cloudinary.com/v1_1/' + cloudName + '/image/upload';
+
+			var timestamp = Date.now() / 1000; // Cloudninary must be in second
+			var uploadPreset = 'ldwlc3ge';
+
+			var paramsStr = 'timestamp=' + timestamp + '&upload_preset=' + uploadPreset + 'HUkbW75mY5iShSYabDUemzNb-_Y';
+
+			var signature = (0, _sha2.default)(paramsStr);
+			var params = {
+				'api_key': '936231253683263',
+				'timestamp': timestamp,
+				'upload_preset': uploadPreset,
+				'signature': signature
+			};
+
+			var uploadRequest = _superagent2.default.post(url);
+			uploadRequest.attach('file', image);
+
+			Object.keys(params).forEach(function (key) {
+				uploadRequest.field(key, params[key]);
+			});
+
+			uploadRequest.end(function (err, resp) {
+				if (err) {
+					{}
+					alert(err);
+					return;
+				}
+				// console.log('UPLOAD COMPLETE: ' + JSON.stringify(resp.body));
+				var uploaded = resp.body;
+
+				var updatedImages = Object.assign([], _this2.state.images); //copy the array object
+
+				updatedImages.push(uploaded); //pushes the uploaded image to updatedImages
+
+				_this2.setState({
+					images: updatedImages //refreshes the state.images
+				});
+			});
+		}
+	}, {
+		key: 'removeImage',
+		value: function removeImage(e) {
+			e.preventDefault();
+			// console.log(e.target.id) //reference the index
+			var updatedImages = Object.assign([], this.state.images); //copy the array object
+
+			updatedImages.splice(e.target.id, 1); //pushes the uploaded image to updatedImages
+
+			this.setState({
+				images: updatedImages //refreshes the state.images
+			});
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement('br', null),
+				_react2.default.createElement(_reactDropzone2.default, { onDrop: this.uploadFile.bind(this) }),
+				_react2.default.createElement(_Image2.default, { images: this.state.images, removeImage: this.removeImage.bind(this) })
+			);
+		}
+	}]);
+
+	return ImageGallery;
+}(_react.Component);
+
+exports.default = ImageGallery;
 
 /***/ })
 /******/ ]);

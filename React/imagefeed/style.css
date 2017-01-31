@@ -1,0 +1,23 @@
+html{
+	margin: 20px;
+	background: #ccc;
+}
+
+a{
+	text-decoration: none
+}
+
+.imageBox{
+	border: solid pink 2px;
+	list-style-type: none;
+	display: inline-block;
+	margin: 2px;
+}
+
+.imageBox img{
+	height: 70px;
+	width: 70px;
+}
+
+
+

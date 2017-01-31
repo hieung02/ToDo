@@ -4,7 +4,7 @@ import sha1 from 'sha1';
 import superagent from 'superagent';
 import Image from './Image';
 
-class ImageGallery extends Component{
+class Images extends Component{
 
 	constructor(){
 		super()
@@ -14,7 +14,7 @@ class ImageGallery extends Component{
 	}
 	
 	uploadFile(files){
-		// console.log('uploadFile: ');
+		console.log('uploadFile: ');
 		const image = files[0]
 
 		const cloudName = 'dlqm0js0m';
@@ -47,7 +47,7 @@ class ImageGallery extends Component{
 				alert(err);
 				return;
 			}
-			// console.log('UPLOAD COMPLETE: ' + JSON.stringify(resp.body));
+			console.log('UPLOAD COMPLETE: ' + JSON.stringify(resp.body));
 			const uploaded = resp.body;
 
 			let updatedImages = Object.assign([],this.state.images); //copy the array object
@@ -60,9 +60,7 @@ class ImageGallery extends Component{
 		});
 	}
 
-	removeImage(e){
-		e.preventDefault();
-		// console.log(e.target.id) //reference the index
+	removeImage(index){
 		let updatedImages = Object.assign([],this.state.images); //copy the array object
 
 		updatedImages.splice(e.target.id, 1); //pushes the uploaded image to updatedImages
@@ -73,11 +71,23 @@ class ImageGallery extends Component{
 	}
 
 	render(){
+		const list = this.state.images.map((image, i) => {
+			return(
+				<li key={i}>
+					<img src={image.secure_url} style={{width: 72}}/>
+					<br/>
+					<a href='#' id={i} onClick={this.removeImage.bind(this)} alt='remove image'>remove</a>
+				</li>
+			)
+		});
 		return(
 			<div>
 				<br />
 				<Dropzone onDrop={this.uploadFile.bind(this)} />
-				<Image images={this.state.images} removeImage={this.removeImage} />	
+				<ol>
+					{ list }
+				</ol>
+				<Image images={this.state.images} />
 			</div>
 		)
 	}

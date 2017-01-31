@@ -77,10 +77,10 @@ class ImageGallery extends Component{
 			<div>
 				<br />
 				<Dropzone onDrop={this.uploadFile.bind(this)} />
-				<Image images={this.state.images} removeImage={this.removeImage} />	
+				<Image images={this.state.images} removeImage={this.removeImage.bind(this)} />	
 			</div>
 		)
 	}
 }
 
-export default Images
+export default ImageGallery
